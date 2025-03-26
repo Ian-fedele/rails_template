@@ -1,0 +1,21 @@
+<h1>Welcome to the Music App! 🎵</h1>
+
+<h2>Recent Playlists</h2>
+<ul>
+  <% @playlists.each do |playlist| %>
+    <li>
+      <a href="<%= playlist_path(playlist) %>"><%= playlist.name %></a>
+      (by <%= playlist.user.username %>)
+    </li>
+  <% end %>
+</ul>
+
+<h2>Recent Songs</h2>
+<ul>
+  <% @songs.each do |song| %>
+    <li><%= song.title %> by <%= song.artist %></li>
+  <% end %>
+</ul>
+
+<p><a href="<%= playlists_path %>">View all Playlists</a></p>
+<p><a href="<%= genres_path %>">Browse by Genre</a></p>
