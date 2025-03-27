@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "genres/index"
   root "home#index"  # Home page
   
   resources :playlists do
