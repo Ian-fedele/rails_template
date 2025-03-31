@@ -1,23 +1,86 @@
-h1 {
-    text-align: center;
-    color: #4a90e2;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
+/* app/assets/stylesheets/application.css */
+
+/* Ensure this is at the top if you have other styles */
+body {
+  background-color: #333333; /* Dark grey background */
+  color: #e0e0e0;           /* Light grey text */
+  font-family: Arial, sans-serif; /* Optional: improve readability */
+}
+
+/* Style the signup form container */
+.devise-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #444444; /* Slightly lighter grey for contrast */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Style form fields */
+.field {
+  margin-bottom: 15px;
+}
+
+label {
+  color: #e0e0e0; /* Light text for labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  background-color: #555555; /* Dark input background */
+  border: 1px solid #777777; /* Subtle border */
+  color: #e0e0e0;           /* Light text in inputs */
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #999999; /* Lighter border on focus */
+}
+
+/* Style the submit button */
+.actions input[type="submit"] {
+  background-color: #666666; /* Medium grey button */
+  color: #ffffff;           /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actions input[type="submit"]:hover {
+  background-color: #888888; /* Lighter grey on hover */
+}
+
+/* Style links */
+a {
+  color: #bbbbbb; /* Light grey links */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff; /* White on hover */
+}
+
+/* Error messages */
+.alert, .notice {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.alert {
+  background-color: #662222; /* Dark red for errors */
+  color: #ffcccc;
+}
+
+.notice {
+  background-color: #226622; /* Dark green for success */
+  color: #ccffcc;
+}

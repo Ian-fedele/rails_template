@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  get "genres/index"
-  root "home#index"  # Home page
-  
-  resources :playlists do
-    member do
-      post 'add_song/:song_id', to: 'playlists#add_song', as: 'add_song'
-    end
-  end
-  
-  resources :genres, only: [:show]
+  devise_for :users
+  root "home#index"
+  resources :songs, only: [:index]
+  resources :playlists, only: [:index]
 end
