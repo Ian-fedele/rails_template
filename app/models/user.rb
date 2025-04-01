@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :playlists
 
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: false, allow_blank: true
+
 end
 
 # app/models/song.rb
