@@ -1,34 +1,52 @@
 <div class="devise-container">
   <% if user_signed_in? %>
     <h1>Welcome, <%= current_user.email %></h1>
-    
-    <h2>Your Favorite Songs</h2>
-    <% if @songs.any? %>
-      <ul>
-        <% @songs.each do |song| %>
-          <li><%= song.title %> by <%= song.artist %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>You haven't added any songs yet.</p>
-    <% end %>
 
+    <!-- Navigation Bar -->
+    <nav class="mb-4">
+      <%= link_to "Create New Playlist", new_user_playlist_path(current_user), class: "btn btn-outline-secondary me-2" %>
+      <%= link_to "Search Songs", search_songs_path, class: "btn btn-outline-secondary me-2" %>
+      <%= link_to "Browse All Songs", songs_path, class: "btn btn-outline-secondary me-2" %>
+    </nav>
+
+    <!-- Favorite Songs -->
+    <h2>Your Favorite Songs</h2>
+    <turbo-frame id="favorite-songs">
+      <% if @songs.any? %>
+        <ul>
+          <% @songs.each do |song| %>
+            <li class="song-result">
+              <%= link_to "#{song.title} by #{song.artist&.name || 'Unknown Artist'}", song_path(song) %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>You haven't added any songs yet.</p>
+        <%= link_to "Add a New Song", new_song_path, class: "btn btn-primary" %>
+      <% end %>
+    </turbo-frame>
+
+    <!-- Playlists -->
     <h2>Your Playlists</h2>
     <% if @playlists.any? %>
       <ul>
         <% @playlists.each do |playlist| %>
-          <li><%= playlist.name %></li>
+          <li><%= link_to playlist.name, playlist_path(playlist) %></li>
         <% end %>
       </ul>
+    
     <% else %>
       <p>You haven't created any playlists yet.</p>
     <% end %>
-    
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, form: { "data-turbo-confirm": "Are you sure you want to sign out?" } %>
+
+    <!-- Sign Out -->
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Are you sure you want to sign out?" }, class: "btn btn-danger mt-3" %>
 
   <% else %>
+    <!-- Guest Welcome -->
     <h1>Welcome to the Music App! 🎵</h1>
-    <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+    <p>Sign in to explore songs, build playlists, and more!</p>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-primary me-2" %>
     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary" %>
   <% end %>
 </div>

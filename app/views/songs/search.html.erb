@@ -1,0 +1,19 @@
+<h1>Search Songs</h1>
+
+<%= form_with url: search_songs_path, method: :get do %>
+  <%= label_tag :search, "Search for a song or artist:" %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= link_to "Back", root_path, class: "btn btn-secondary mt-3" %>
+
+<% if @songs.any? %>
+  <ul>
+    <% @songs.each do |song| %>
+      <li class="song-result"><%= song.title %> by <%= song.artist.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No songs found</p>
+<% end %>

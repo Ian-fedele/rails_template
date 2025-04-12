@@ -10,7 +10,10 @@ When I go to the my playlists page
 Then I should be able to see all my Playlists
 
 Scenario: Viewing one playlist
-Given I have an account
-When I click on the playlist
-Then I should see the collection of songs in the playlist
+  Given I have an account with a playlist named "Workout"
+  And the playlist contains the song "Eye of the Tiger" by "Survivor"
+  When I visit the playlist page for "Workout"
+  Then I should see "Workout" as the playlist title
+  And I should see the song "Eye of the Tiger" by "Survivor" listed
+
 

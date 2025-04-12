@@ -1,0 +1,13 @@
+<h1>Create a New Playlist</h1>
+
+<%= form_with model: @playlist, local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :name, "Playlist Name" %>
+
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Create Playlist", class: "btn btn-success" %>
+<% end %>
+
+<%= link_to "Back", root_path, class: "btn btn-secondary mt-3" %>

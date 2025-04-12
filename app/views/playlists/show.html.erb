@@ -1,0 +1,9 @@
+<h1><%= @playlist.name %></h1>
+
+<h2>Songs in this Playlist:</h2>
+
+<turbo-frame id="song-list">
+  <%= render partial: "playlists/song_list", locals: { songs: @songs } %>
+</turbo-frame>
+
+<%= link_to "Back to Home", root_path, class: "btn btn-secondary mt-3" %>

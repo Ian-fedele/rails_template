@@ -1,0 +1,9 @@
+<% if songs.any? %>
+  <ul>
+    <% songs.each do |song| %>
+      <li class="song"><%= song.title %> by <%= song.artist.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This playlist has no songs yet.</p>
+<% end %>

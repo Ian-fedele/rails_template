@@ -1,0 +1,19 @@
+<h1>Add "<%= @song.title %>" to Your Playlist</h1>
+
+<% if current_user.playlists.any? %>
+  <%= form_with url: add_to_playlist_song_path(@song), method: :post do %>
+    <p>Select a playlist:</p>
+
+    <%= select_tag :playlist_id,
+        options_from_collection_for_select(current_user.playlists, :id, :name),
+        prompt: "Choose a playlist",
+        class: "form-select" %>
+
+    <%= submit_tag "Add to Playlist", class: "btn btn-primary mt-2" %>
+    <%= link_to "Create New Playlist", new_user_playlist_path(current_user), class: "btn btn-secondary" %>
+
+  <% end %>
+<% else %>
+  <p>You don't have any playlists yet.</p>
+  <%= link_to "Create New Playlist", new_user_playlist_path(current_user), class: "btn btn-secondary" %>
+<% end %>

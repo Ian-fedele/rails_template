@@ -1,0 +1,24 @@
+<h1>All Songs</h1>
+
+<% if @songs.any? %>
+  <ul>
+    <% @songs.each do |song| %>
+      <li>
+        <strong><%= song.title %></strong> by <%= song.artist %>
+
+        <!-- Link to view song details -->
+        <%= link_to "View", song_path(song), class: "btn btn-primary" %>
+
+        <!-- Delete button -->
+        <%= button_to "Delete", song_path(song), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+        <!-- Optional: Add to playlist if user signed in -->
+        <% if user_signed_in? %>
+          <%= link_to "Add to Playlist", add_to_playlist_song_path(song), method: :post, class: "btn btn-success" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No songs available.</p>
+<% end %>
