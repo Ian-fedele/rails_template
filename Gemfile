@@ -35,7 +35,7 @@ gem "bootsnap", require: false
 gem "devise"
 # Use SQLite3 in development and test
 group :development, :test do
-  gem 'sqlite3', '~> 1.6'
+ # gem 'sqlite3', '~> 1.6'
 end
 
 # Use PostgreSQL in production
@@ -64,7 +64,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # Use sqlite3 as the database for Active Record
-  #gem "sqlite3", ">= 2.1"
+  gem "sqlite3", ">= 2.1"
 end
 
 group :production do

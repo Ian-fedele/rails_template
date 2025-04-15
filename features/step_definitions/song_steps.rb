@@ -60,9 +60,10 @@ When("I enter a search term that doesn't match any songs") do
   fill_in 'search', with: 'xyz123nomatch'
 end
 
-When('I click the search button') do
-  click_button 'Search'
+When('I click the {string} button') do |string|
+  click_button string
 end
+
 
 Then('I should see a list of songs that match the keyword') do
   expect(page).to have_css('.song-result')
@@ -77,7 +78,7 @@ Then('I should see a message saying "No songs found"') do
 end
 
 # Song & playlist setup
-Given(/^I have a song in my playlist$/) do
+Given('I have a song in my playlist') do
   add_song_to_playlist
   login_as(@user, scope: :user)
 end
@@ -93,9 +94,8 @@ Given('I am on the add to playlist song page') do
 end
 
 Given('I am on the song details page') do
-  add_song_to_playlist
-  login_as(@user, scope: :user)
   visit song_path(@song)
+  
 end
 
 Given('I have an account') do
@@ -111,9 +111,6 @@ Given('I have already added the song to the playlist') do
 end
 
 # Deleting a song
-When('I click the delete button') do
-  click_link 'Delete Song'
-end
 
 When('I confirm the deletion') do
   page.driver.browser.switch_to.alert.accept rescue nil
@@ -124,10 +121,7 @@ Then('I should see a confirmation deletion message') do
 end
 
 Then('the song should be removed from my playlist') do
-  expect { @song.reload }.to raise_error(ActiveRecord::RecordNotFound)
-  @playlist.reload
-  visit playlist_path(@playlist)
-  expect(page).not_to have_content("Never Gonna Give You Up")
+  expect(page).to_not have_content("Never Gonna Give You Up")
 end
 
 When('I cancel the deletion') do

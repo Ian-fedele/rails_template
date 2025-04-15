@@ -1,7 +1,7 @@
 <h1><%= @song.title %> by <%= @song.artist %></h1>
 
 <% if user_signed_in? %>
-  <p><%= link_to "Delete Song", song_path(@song), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this song?" }, class: "btn btn-danger" %></p>
+  <p><%= button_to "Delete Song", song_path(@song), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this song?" }, class: "btn btn-danger" %></p>
 <% end %>
 
 <p><%= link_to "Back to Songs", songs_path, class: "btn btn-secondary" %></p>
