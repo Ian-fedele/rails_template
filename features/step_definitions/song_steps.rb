@@ -57,7 +57,8 @@ When('I enter an artist name into the search bar') do
 end
 
 When("I enter a search term that doesn't match any songs") do
-  fill_in 'search', with: 'xyz123nomatch'
+  fill_in 'search', with: '9u54wwt549ttr8jth8te5trteutetutd94uoeyoieeioiwjoiew4o4wito4ti56054'
+   click_button 'Search'
 end
 
 When('I click the search button') do

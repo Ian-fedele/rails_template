@@ -4,14 +4,19 @@ class SongsController < ApplicationController
   end
 
   def search
-    @songs = []
     if params[:search].present?
       query = params[:search].downcase
-      @songs = Song.joins(:artist)
-                   .where('LOWER(songs.title) LIKE ? OR LOWER(artists.name) LIKE ?', "%#{query}%", "%#{query}%")
+    
+      # Search Spotify for tracks
+      @spotify_songs = RSpotify::Track.search(query, limit: 5)
+      
+      # If no results are found, set @spotify_songs to an empty array
+      @spotify_songs = [] if @spotify_songs.empty?
+    else
+      flash[:alert] = "Please enter a search term."
     end
-  end
-
+  end  
+  
   def select_playlist
     @song = Song.find(params[:id])
   end

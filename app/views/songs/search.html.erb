@@ -8,12 +8,22 @@
 
 <%= link_to "Back", root_path, class: "btn btn-secondary mt-3" %>
 
-<% if @songs.any? %>
-  <ul>
-    <% @songs.each do |song| %>
-      <li class="song-result"><%= song.title %> by <%= song.artist.name %></li>
-    <% end %>
-  </ul>
-<% else %>
+<% if flash[:notice].present? %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h2>Spotify Search Results</h2>
+
+<h2>Spotify Search Results</h2>
+
+<% if @spotify_songs.present? %>
+  <% @spotify_songs.each do |track| %>
+    <div class="song-result">
+      <p><%= track.name %> by <%= track.artists.first.name %></p>
+    </div>
+  <% end %>
+<% elsif params[:search].present? %>
   <p>No songs found</p>
 <% end %>
+
+

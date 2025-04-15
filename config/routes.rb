@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 # Handle the playlist selection form submission
   post "songs/:id/add_to_playlist", to: "songs#add_to_playlist", as: "add_to_playlist_song"
 
+    get "/auth/spotify/callback", to: "sessions#spotify"
+
   devise_for :users
   root "home#index"
 
